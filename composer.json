@@ -1,0 +1,32 @@
+{
+  "name": "palshin/wren-csv-parser",
+  "version": "0.0.1",
+  "description": "Can read the CSV file, parse the contents and then insert the data into a MySQL database table.",
+  "license": "MIT",
+  "type": "project",
+  "repositories": [],
+  "require": {
+    "php": ">=7.1.3",
+    "symfony/console": "4.2.*"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Wren\\": "src/"
+    }
+  },
+  "autoload-dev": {
+  },
+  "scripts": {
+  },
+  "config": {
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true,
+    "optimize-autoloader": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
