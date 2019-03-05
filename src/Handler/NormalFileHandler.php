@@ -4,18 +4,25 @@
 namespace Wren\Handler;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Wren\Reader\Reader;
 
 class NormalFileHandler implements FileHandler
 {
     private $em;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    /**
+     * @var Reader $reader
+     */
+    private $reader;
+
+    public function __construct(Reader $reader, EntityManagerInterface $entityManager)
     {
+        $this->reader = $reader;
         $this->em = $entityManager;
     }
 
-    public function process()
+    public function process($filePath)
     {
-        var_dump(self::class);die();
+        return $this->reader->read($filePath);
     }
 }

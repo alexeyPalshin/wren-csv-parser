@@ -6,8 +6,19 @@ namespace Wren\Handler;
 
 class TestFileHandler implements FileHandler
 {
-    public function process()
+    /**
+     * @var Reader $reader
+     */
+    private $reader;
+
+    public function __construct(Reader $reader)
     {
-        var_dump(self::class);die();
+        $this->reader = $reader;
+    }
+
+    public function process($filePath)
+    {
+        var_dump(self::class);
+        die();
     }
 }
