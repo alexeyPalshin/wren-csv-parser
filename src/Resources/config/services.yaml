@@ -1,0 +1,27 @@
+services:
+
+    # register command as a service
+    console.process_csv_file:
+        class: Wren\Command\ProcessFileCommand
+        arguments: ['wren:process-file', '@app.file_handler_bus']
+        tags:
+            - { name: 'console.command' }
+
+    app.file_handler_locator:
+        class: Symfony\Component\DependencyInjection\ServiceLocator
+        arguments:
+            -
+                normal_handler: '@app.file_handler.normal'
+                test_handler: '@app.file_handler.test'
+        tags: ['container.service_locator']
+
+    app.file_handler_bus:
+        class: Wren\Handler\Factory\FileHandlerBus
+        arguments: ['@app.file_handler_locator']
+
+    app.file_handler.normal:
+        class:     Wren\Handler\NormalFileHandler
+        arguments: ['@doctrine.orm.entity_manager']
+
+    app.file_handler.test:
+        class:     Wren\Handler\TestFileHandler
