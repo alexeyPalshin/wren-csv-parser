@@ -9,7 +9,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 
-class WrenCsvParserExtension extends Extension
+class WrenExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
