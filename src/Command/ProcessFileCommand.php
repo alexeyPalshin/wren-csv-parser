@@ -91,6 +91,7 @@ EOF
                 new Question('Please specify file to process: ', 'stock.csv')
             );
             $input->setArgument('file', $fileName);
+            $this->filePath = $this->resolveFilePath($fileName);
         }
     }
 
@@ -100,11 +101,11 @@ EOF
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->fileHandler = $this->fileHandlerBus->handle($input->getOption('mode'), $this->filePath);
-//        var_dump($this->fileHandler);die();
+        var_dump($this->fileHandler);die();
     }
 
     /**
-     * the full path to the file being processed
+     * The full path to the file being processed
      * @param $fileName string
      * @return string
      */

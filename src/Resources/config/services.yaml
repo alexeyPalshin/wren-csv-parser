@@ -19,9 +19,20 @@ services:
         class: Wren\Handler\Factory\FileHandlerBus
         arguments: ['@app.file_handler_locator']
 
+    app.observers_launcher:
+        class: Wren\Observers\ObserversLauncher
+
     app.file_handler.normal:
         class:     Wren\Handler\NormalFileHandler
-        arguments: ['@doctrine.orm.entity_manager']
+        arguments:
+            - '@app.file_reader.csv'
+            - '@app.observers_launcher'
 
     app.file_handler.test:
         class:     Wren\Handler\TestFileHandler
+        arguments:
+            - '@app.file_reader.csv'
+            - '@app.observers_launcher'
+
+    app.file_reader.csv:
+        class: Wren\Reader\CsvReader
