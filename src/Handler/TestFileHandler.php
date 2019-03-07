@@ -3,6 +3,10 @@
 
 namespace Wren\Handler;
 
+use Wren\Observers\ObserversLauncher;
+use Wren\Reader\Reader;
+use Wren\Rules\CostLessStockLessRule;
+use Wren\Rules\CostOverRule;
 
 class TestFileHandler implements FileHandler
 {
