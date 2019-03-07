@@ -1,6 +1,6 @@
 {
   "name": "palshin/wren-csv-parser",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Can read the CSV file, parse the contents and then insert the data into a MySQL database table.",
   "license": "MIT",
   "type": "symfony-bundle",
