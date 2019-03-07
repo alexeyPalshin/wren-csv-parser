@@ -10,5 +10,5 @@ interface FileHandler
      *
      * @return mixed
      */
-    public function process($filePath);
+    public function process($filePath, $output);
 }

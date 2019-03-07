@@ -27,11 +27,6 @@ class ProcessFileCommand extends Command
     public $filePath;
 
     /**
-     * @var FileHandler
-     */
-    protected $fileHandler;
-
-    /**
      * @var FileHandlerFactory
      */
     protected $fileHandlerBus;
@@ -54,7 +49,8 @@ class ProcessFileCommand extends Command
             // the full command description shown when running the command with
             // the "--help" option
             ->setHelp(<<<EOF
-Works with files from directory public/uploads            
+Works with files from directory public/uploads  
+Specify filename to process as argument file         
 To run in test mode, pass option mode as test(<info>%command.name%</info> -m test ).            
 EOF
             )
@@ -86,10 +82,7 @@ EOF
         if (!$input->getArgument('file')) {
             /** @var Symfony\Component\Console\Helper\QuestionHelper $helper */
             $helper = $this->getHelper('question');
-            $fileName = $helper->ask($input,
-                $output,
-                new Question('Please specify file to process: ', 'stock.csv')
-            );
+            $fileName = $helper->ask($input, $output, new Question('Please specify file to process: ', 'stock.csv'));
             $input->setArgument('file', $fileName);
             $this->filePath = $this->resolveFilePath($fileName);
         }
@@ -100,8 +93,7 @@ EOF
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->fileHandler = $this->fileHandlerBus->handle($input->getOption('mode'), $this->filePath);
-        var_dump($this->fileHandler);die();
+        $this->fileHandlerBus->handle($input->getOption('mode'), $this->filePath, $output);
     }
 
     /**

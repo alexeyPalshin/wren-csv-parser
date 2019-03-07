@@ -26,7 +26,7 @@ class FileHandlerBus
      * @param $filePath string
      * @return mixed
      */
-    public function handle(string $commandMode, $filePath)
+    public function handle(string $commandMode, $filePath, $output)
     {
         $serviceId = $commandMode . '_handler';
         
@@ -34,7 +34,7 @@ class FileHandlerBus
             /** @var FileHandler $handler */
             $handler = $this->locator->get($serviceId);
 
-            return $handler->process($filePath);
+            return $handler->process($filePath, $output);
         }
 
     }

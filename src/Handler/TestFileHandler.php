@@ -19,8 +19,25 @@ class TestFileHandler implements FileHandler
         $this->launcher = $launcher;
     }
 
-    public function process($filePath)
+    public function process($filePath, $output)
     {
-        return $this->reader->read($filePath, $this->launcher);
+        $this->configureLauncher();
+        return $this->reader->read($filePath, $this->launcher, $output);
+    }
+
+    /**
+     * Configure the launcher. Add rules used in this mode.
+     */
+    public function configureLauncher()
+    {
+        // You can specify the ordinal number of the field and the value with which you want to compare it using the Rule setters
+        $costOverRule = new CostOverRule();
+        $costLessStockLessRule = new CostLessStockLessRule();
+        $this->launcher->addObserver([
+            $costOverRule, 'apply'
+        ]);
+        $this->launcher->addObserver([
+            $costLessStockLessRule, 'apply'
+        ]);
     }
 }

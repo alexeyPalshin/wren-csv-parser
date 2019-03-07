@@ -36,3 +36,8 @@ services:
 
     app.file_reader.csv:
         class: Wren\Reader\CsvReader
+        arguments: ['@app.repository.product']
+
+    app.repository.product:
+        class: Wren\Repository\ProductRepository
+        arguments: ['@doctrine.orm.entity_manager']
